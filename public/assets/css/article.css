@@ -1,0 +1,35 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
+@import url(http://fonts.googleapis.com/css?family=Syncopate);
+
+.article-wrap {
+	color: white;
+	width: 800px;
+	height: 650px; 
+	margin-left: 25%;
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+.article-wrap div {
+	margin-top: 20px;
+}
+
+.title {
+	font-size: 40px;
+	font-weight: bold;	
+	text-align: center;
+	margin-left: 250px;
+	width: 300px;
+}
+
+.type {
+	text-align: center;
+	margin-left: 350px;
+	width: 100px;	
+	font-weight: 40px;
+}
+
+.body,
+.summary {
+	width: 700px;
+	margin-left: 40px;
+}	

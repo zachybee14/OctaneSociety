@@ -1,0 +1,38 @@
+.garage-main-wrap {
+	margin: 15px;
+}
+
+.car {
+	margin-left: 30%;
+	background-color: rgba(0, 0, 0, 0.7);
+	height: 300px;
+	width: 500px;
+}
+
+.title {
+	color: white;
+	text-align: center;
+	font-size: 30px;
+}
+
+.title a {
+	color: white;
+}
+
+.title a:focus,
+.title a:hover {
+	color: #eee;
+	text-decoration: none;
+	text-shadow: 1px 0px 20px #ccc;
+	outline: 0;
+}
+
+.car-pic {
+	background-color: rgba(0, 0, 0, 0.9);
+	height: 240px;
+	width: 350px;
+	margin-left: 80px;
+	margin-top: 10px;
+	color: white;
+	text-align: center;
+}

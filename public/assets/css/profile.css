@@ -1,0 +1,80 @@
+.overview-wrap {
+	width: 400px;
+	float: left;
+	margin-left: 20px;
+}
+
+.overview-wrap > div{
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 400px;
+	padding-top: 10px;
+}
+
+.profile-overview {
+	height: 200px;
+}
+	
+.profile-overview .profile-pic {
+	background-color: white;
+	width: 152px;
+	height: 180px;
+	margin-left: 10px;
+	float: left;
+}
+
+.user-name {
+	color: white;
+	float: left;
+	width: 120px;
+	text-align: center;
+}
+
+.garage-overview {
+	margin-top: 15px;
+	height: 200px;
+}
+
+.garage-overview :first-child {
+	font-size: 30px;
+	text-align: center;
+	color: white;
+}
+
+.garage-overview a:focus,
+.garage-overview a:hover {
+	color: #eee;
+	text-decoration: none;
+	text-shadow: 1px 0px 20px #ccc;
+	outline: 0;
+}
+
+.favorite-sites {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	height: 270px;
+}
+
+.favorite-sites div {
+	color: white;
+	font-size: 30px;
+	text-align: center;
+	height: 30px;
+}
+
+.bulletin-board {
+	background-color: rgba(0, 0, 0, 0.8);
+	min-width: 400px;
+	max-width: 800px;
+	width: 40%;
+	height: 90%;
+	float: right;
+	margin-right: 15%; 
+	margin-bottom: 10px;
+}
+
+.bulletin-board :first-child {
+	color: white;
+	font-size: 35px;
+	margin-top: 10px;
+	text-align: center;
+}
