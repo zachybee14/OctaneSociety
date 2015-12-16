@@ -1,0 +1,104 @@
+.event-header {
+	text-align: center;
+}
+.event-header .title {
+	font-size: 80px;
+	color: white;
+}
+
+.event-header img {
+	box-shadow: 2px 2px 10px 10px #616161;
+	width: 50%;
+	height: 50%;
+}
+
+.counter {
+	font-size: 40px;
+	color: white;
+}
+
+.attendees div {
+	font-size: 50px;
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.event-info {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.event-info .description .event-type, 
+.event-info .description .event-makes {
+	margin-top: 2px;
+}
+
+.event-info .description .text-description {
+	margin-top: 5px;
+}
+
+.event-info .info-buttons {
+	margin-top: 20px;
+}
+
+.event-info .info-buttons div { 
+	display: inline-block;
+}
+
+.event-info .info-buttons button {
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 150px;
+}
+
+.ticket-btn {
+	margin-top: 40px;
+	text-align: center;
+}
+
+.ticket-btn div {
+	margin-left: auto;
+	margin-right: auto;
+	width: 240px;
+}
+
+.ticket-btn div button {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.comments-wrap {
+	margin-top: 40px;
+	width: 600px;
+	height: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: black;
+	box-shadow: 2px 2px 10px 10px #616161;
+}
+
+.comments-wrap .title {
+	text-align: center;
+	margin: 15px;
+	font-size: 40px;
+}
+
+.comments-wrap .box .comment {
+	background-color: #6c6c6c;
+	margin: 20px;
+}
+
+
+.comments-wrap .box .comment .user-name {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.comments-wrap .box .comment .comment-text {
+	width: 532px;
+	background-color: #8d8d8d;
+	text-align: center;
+	float: right;
+}

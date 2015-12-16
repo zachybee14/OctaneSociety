@@ -3,7 +3,7 @@ var facebookId;
 $(function() {
 	// main buttons
 	$('#fb-login-button').click(checkLoginState);
-	$('.enter-btn button').click(showAccessPopup);
+	$('.enter-btn').click(showAccessPopup);
 	
 	$('.loading').hide();
 });
@@ -57,7 +57,10 @@ function showAccessPopup() {
 		$infoWrap.find('.next-btn').click(__showCarSelect);
 	}
 	
-	function __showCarSelect() {
+	function __showCarSelect(e) {
+		if (e)
+			e.preventDefault();
+		
 		$infoWrap.hide();
 		$carSelect.show();
 

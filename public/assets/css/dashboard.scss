@@ -1,0 +1,104 @@
+@import url(http://fonts.googleapis.com/css?family=Syncopate);
+
+.column-wrap {
+	text-align: center;
+}
+
+.center {
+	margin-right: auto;
+	margin-left: auto;
+	width: 1325px;
+}
+
+.column-news,
+.column-events,
+.column-articles {
+	float: left;
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: 10px;
+	height: 730px;	
+	width: 420px;
+}
+
+.news-title,
+.events-titles,
+.articles-title {
+	font-family: Syncopate;
+	text-align: center;
+	color: white;
+	margin: 5px;
+	font-size: 35px;
+}	
+
+.news-title div,
+.events-titles div,
+.articles-title div {
+	font-size: 10px;
+}
+
+.articles-title a, 
+.events-titles a,
+.news-title a,
+.article-titles a {
+	color: white;
+}
+
+.news-title a:focus,
+.news-title a:hover, 
+.events-titles a:focus,
+.events-titles a:hover, 
+.articles-title a:focus,
+.articles-title a:hover {
+	color: #eee;
+	text-decoration: none;
+	text-shadow: 1px 0px 20px #ccc;
+	outline: 0;
+}
+
+#create-article .modal-content {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 5px 10px;
+}
+
+.modal-body h2 {
+	font-family: Syncopate;
+	color: black;
+	text-align: center;
+}
+
+#create-article input[type=submit]{
+	border-radius: 0;
+	background-color: #961700;
+	border-color: gray;
+	margin-bottom: 5px;
+	width: 130px;
+}
+
+#create-article input[type=submit] {
+	margin-top: 10px;
+}
+
+.article-type {
+	margin-top: 5px;
+	width: 120px;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.article-titles {
+	margin: 20px;
+	text-align: left;
+	font-size: 16px;
+}
+
+.news-filters button {
+	color: white;
+	opacity: 0.90;
+	background-color: #323232;
+}
+
+.news-filters button:hover {
+	opacity: 0.7;
+	background-color: black;
+}	

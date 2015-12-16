@@ -12,6 +12,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        \OctaneSociety\Http\Middleware\ProvideCompiledAssets::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \OctaneSociety\Http\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
@@ -27,7 +28,6 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \OctaneSociety\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \OctaneSociety\Http\Middleware\RedirectIfAuthenticated::class,
     ];
 }

@@ -11,14 +11,8 @@
 		<div class="wrapper">
 			<div class="logo"></div>​
 			<div class="buttons-wrap">
-				<div class="enter-btn">
-					<button class="btn">Enter</button>
-				</div>
-				<div class="or">
-					<h2> or </h2>
-				</div>
-				<div class="facebook-btn" style="position:fixed;">
-					<fb:login-button scope="public_profile,email" size="large" data-max-rows="1" onlogin="checkLoginState();">Login with Facebook</fb:login-button>
+				<div class="enter-btn ghost-button">
+					<a>Enter</a>
 				</div>
 			</div>
 			<div class="pending-review">hi</div>
@@ -38,9 +32,21 @@
 						<input type="submit" class="btn btn-primary" value="Login">
 					</div>
 				</form>
-				
-				<a href="#" class="join-btn"> not a member? Request to join.</a>
-				<a href="#" class="forgot-password-btn">Forgot password</a>
+
+				<div class="or">
+					<h2> or </h2>
+				</div>
+				<div class="facebook-btn">
+					<fb:login-button scope="public_profile,email" size="large" data-max-rows="1" onlogin="checkLoginState();">Login with Facebook</fb:login-button>
+				</div>
+
+				<div class="join-btn">
+					<a>Join</a>
+				</div>
+
+				<div class="">
+					<a href="#" class="forgot-password-btn">Forgot password</a>
+				</div>
 			</div>
 
 			<div class="info-wrap">

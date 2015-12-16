@@ -8,9 +8,15 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/main.css?{{ filemtime('assets/css/main.css') }}">
 		<script type="text/javascript" src="/assets/lib/jquery/jquery.js?{{ filemtime('assets/lib/jquery/jquery.js') }}"></script>
 		<script type="text/javascript" src="/assets/js/common.js?{{ filemtime('assets/js/common.js') }}"></script>
+
+		@yield('header')
+		
 	</head>
 
 	<div class="page-wrap">
+		<div class="dashboard-link">
+			<a href="http://octanesociety.dev/dashboard" class="image"></a>
+		</div>
 		<div class="profile-link">
 			<a href="http://octanesociety.dev/profile"><i class="fa fa-user fa-2x"></i> {{ Auth::user()->first_name }} </a>
 		</div>
@@ -36,8 +42,5 @@
 				<input type="text" class="form-control" id="search-email" placeholder=" cars, friends, articles..." tabindex="1">
 			</div>-->
 	</div>
-		<div class="dashboard-link">
-			<a href="http://octanesociety.dev/dashboard" class="image"></a>
-		</div>
     </div>
 </div>

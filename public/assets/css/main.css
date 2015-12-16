@@ -9,6 +9,7 @@ body {
 }
 
 .dashboard-link {
+	position: absolute;
 	width: 300px;
 	margin-top: 3px;
 }

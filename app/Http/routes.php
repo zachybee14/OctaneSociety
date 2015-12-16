@@ -63,8 +63,17 @@ Route::group(['middleware' => 'auth'], function() {
 		Route::get('join-requests', 'UsersController@getNonAcceptedUsers');
 	});
 
+	Route::group(['prefix' => 'events'], function() {
+		Route::get('', 'EventsController@createEventView');
+		Route::get('new-event', 'EventsController@createNewEventView');
+		Route::get('list', 'EventsController@getEvents');
+		Route::post('create', 'EventsController@createEvent');
+	});
+
 	Route::resource('cars', 'CarsController');
 	Route::resource('bulletin/posts', 'BulletinController');
 	Route::resource('articles', 'ArticleController');
 	Route::get('article-titles', 'ArticleController@getTitles');
 });
+
+

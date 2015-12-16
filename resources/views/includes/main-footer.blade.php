@@ -11,5 +11,7 @@
 	@endforeach
 @endif
 
+@yield('footer')
+
 </body>
 </html>
