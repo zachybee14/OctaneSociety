@@ -13,7 +13,7 @@
 		
 	</head>
 
-	<div class="page-wrap">
+	<div class="page-wrap gradientback">
 		<div class="dashboard-link">
 			<a href="http://octanesociety.dev/dashboard" class="image"></a>
 		</div>

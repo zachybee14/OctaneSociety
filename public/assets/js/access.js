@@ -14,7 +14,9 @@ function showAccessPopup() {
 	var $loginWrap = $accessPopup.find('.login-wrap');
 	var $infoWrap = $accessPopup.find('.info-wrap');
 	var $carSelect = $accessPopup.find('.car-wrap');
-	var $mainButtons = $('.wrapper').find('.buttons-wrap');
+	var $mainButtons = $('.wrapper').find('.buttons-container');
+
+	$('.logo').addClass('transparent');
 
 	//if (!$accessPopup.data('is-setup', true)) {
 		$loginWrap.find('.login-form').off('submit').submit(__processLogin);
@@ -26,6 +28,7 @@ function showAccessPopup() {
 	$mainButtons.hide();
 	$accessPopup.show();
 
+	
 	$accessPopup.click(function(e) {
 		if (e.target != e.currentTarget) 
 			return;
@@ -39,6 +42,8 @@ function showAccessPopup() {
 		// show the main view 
 		$accessPopup.hide();
 		$mainButtons.show();
+
+		$('.logo').removeClass('transparent');
 	});
 	
 	if (facebookId) {
@@ -239,7 +244,7 @@ function showAccessPopup() {
 				if (!response.approved) {
 					
 					// first hide the login-wrap
-					$('.buttons-wrap').hide();
+					$('.wrapper').hide();
 
 					// then show them the pending review message
 					var $pendingMsgDiv = $('.pending-review');
@@ -319,7 +324,7 @@ function showAccessPopup() {
 			if (!response.approved) {
 				
 				// first hide the login-wrap
-				$('.buttons-wrap').hide();
+				$('.wrapper').hide();
 
 				// then show them the pending review message
 				var $pendingMsgDiv = $('.pending-review');
@@ -364,7 +369,7 @@ function statusChangeCallback(response) {
 			// if they are not approved show "pending approval messgae"
 			if (!response.approved && !response.new_user) {
 				// first hide the login-wrap
-				$('.buttons-wrap').hide();
+				$('.wrapper').hide();
 
 				// then show them the pending review message
 				var $pendingMsgDiv = $('.pending-review');
@@ -379,7 +384,7 @@ function statusChangeCallback(response) {
 			}
 			else {
 				// load the home view
-				window.location = '/dashboard';	
+				window.location = '/dashboard';
 			}
 		}
 
@@ -413,11 +418,11 @@ window.fbAsyncInit = function() {
 		cookie		 : true,	// enable cookies to allow the server to access 
 							// the session
 		xfbml			: true,	// parse social plugins on this page
-		version		: 'v2.2' // use version 2.2
+		version		: 'v2.5' // use version 2.2
 	});
 };
 
-// Load the SDK asynchronously
+// Load Facebook SDK asynchronously
 (function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) return;

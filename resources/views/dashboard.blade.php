@@ -24,9 +24,12 @@
 		</div>
 
 		<div class="column-events">
-			<div class="events-titles">
+			<div class="events-title">
 				Events
-				<div class="new-event-btn"><a href="#"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i>Create event</a></div>
+				<div class="new-event-btn"><a href="#"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i>Add event</a></div>
+			</div>
+			<div class="events-list">
+
 			</div>
 		</div>
 
@@ -46,11 +49,56 @@
 					</select>
 				</div>
 			</div>
-			<div class="article-titles">
+			<div class="articles-list">
 
 			</div>
 		</div>
+	</div>
+</div>
 
+<div id="popup" class="overlay"> 
+	<div class="create-event-wrap">
+		<div class="title-div">Add Facebook event</div>
+		<div class="fb-events-list">
+			<select class="form-group">
+				 <option value="" disabled >Facebook events</option>
+			</select>
+		</div>
+		<div class="event-types">
+			<select class="form-group">
+				 <option value="" disabled selected>Type</option>
+				 <option value="Meet">Meet</option>
+				 <option value="Track">Track</option>
+				 <option value="Show">Show</option>
+				 <option value="Track/Show">Track/Show</option>
+			</select>
+		</div>
+		<div class="add-btn">
+			<div>
+				<button class="btn">Add event</button>
+			</div>
+		</div>
+		<div class="address-wrap">
+			<form>
+				<div class="form-group">
+					<input type="text" class="form-control street" placeholder="street">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control city" placeholder="city">
+				</div>
+				<div class="form-group">
+					<select class="form-group state">
+						 <option value="" disabled >state</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" required="true" class="form-control zip" placeholder="zip">
+				</div>
+				<div class="form-group">
+					<input type="submit" class="btn create-btn" value="Create event &gt;">
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 

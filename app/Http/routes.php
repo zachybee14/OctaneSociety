@@ -64,16 +64,15 @@ Route::group(['middleware' => 'auth'], function() {
 	});
 
 	Route::group(['prefix' => 'events'], function() {
-		Route::get('', 'EventsController@createEventView');
-		Route::get('new-event', 'EventsController@createNewEventView');
+		Route::get('event/test', 'EventsController@showEventTestPage');
+		Route::get('event/{id}', 'EventsController@showEventPage');
 		Route::get('list', 'EventsController@getEvents');
 		Route::post('create', 'EventsController@createEvent');
 	});
 
+	Route::resource('states', 'StatesController');
 	Route::resource('cars', 'CarsController');
 	Route::resource('bulletin/posts', 'BulletinController');
 	Route::resource('articles', 'ArticleController');
 	Route::get('article-titles', 'ArticleController@getTitles');
 });
-
-

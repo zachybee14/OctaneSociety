@@ -16,16 +16,17 @@ use OctaneSociety\Models\User;
 use OctaneSociety\Models\Event;
 
 class EventsController extends Controller {
-	public function createEventView() {
+	public function showEventPage($id) {
+
 		return View::make('events/events');
 	}
 
-	public function createNewEventView() {
-		return View::make('events/create-event');
+	public function showEventTestPage() {
+		return View::make('events/events');
 	}
 
 	public function getEvents() {
-		$events = Event::get();
+		$events = Event::select('id', 'name')->get();
 
 		return Response::json([
 			'success' => true,
@@ -34,45 +35,49 @@ class EventsController extends Controller {
 	}
 
 	public function createEvent() {
-		$input = Input::all();
-		$user = User::findOrFail($input['creator_id']);
-		//$user = Auth::user();
+		$input = Input::only('fb_id', 'name', 'type', 'description', 'start_time', 'location');
+		$address = $input['location'];
+		$dateTime = explode('T',  $input['start_time']);
+		$startDate = $dateTime[0];
+		$startTime = $dateTime[1];
+		$user = Auth::user();
 
-		//$address = $input['full_address'];
+		if (count($address) == 4) {
 
-		$address = [
-			'address' => $input['address'],
-			'city' => $input['city'],
-			'state' => $input['state'],
-			'zip' => $input['zip']
-		];
+			$geocode = $this->getGeocodedAddress($address);
+			$latitude = $geocode->geometry->location->lat;
+			$longitude = $geocode->geometry->location->lng;
+		}
+		else {
+			$latitude = $address['latitude'];
+			$longitude = $address['longitude'];
+		}
 
-		$geocode = $this->getGeocodedAddress($address);
-		$latitude = $geocode->geometry->location->lat;
-		$longitude = $geocode->geometry->location->lng;
-
-		
-		$event = Event::where('date_start', $input['start_date'])
+		$event = Event::where('date_start', $startDate)
 				->where('x_latitude', $latitude)
 				->where('x_longitude', $longitude)
 				->first();
-
+			
 		if ($event)
 			throw new ErrorMessageException('There is already an event going on at that location on those days.');
 
+		// check if the type is actually one of the types
 		$event = new Event;
+		$event->x_fb_id = $input['fb_id'];
 		$event->creator_id = $user->id;
 		$event->name = $input['name'];
-		$event->phone = $input['phone'];
-		$event->e_mail = $input['email'];
-		$event->address = $address['address'];
+		$event->type = $input['type'];
+		$event->description = $input['description'];
+		//$event->phone = $input['phone'];
+		//$event->e_mail = $input['email'];
+		$event->address = $address['street'];
 		$event->city = $address['city'];
 		$event->state = $address['state'];
 		$event->zip = $address['zip'];
 		$event->x_latitude = $latitude;
 		$event->x_longitude = $longitude;
-		$event->date_start = $input['start_date'];
-		$event->date_end = $input['end_date'];
+		$event->date_start = $startDate;
+		$event->time_start = $startTime;
 		$event->save();
 
 		return Response::json([

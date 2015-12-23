@@ -10,9 +10,14 @@
 		<div id="fb-root"></div>
 		<div class="wrapper">
 			<div class="logo"></div>​
-			<div class="buttons-wrap">
+			<div class="buttons-container">
 				<div class="enter-btn ghost-button">
 					<a>Enter</a>
+				</div>
+				<div class="auto-login">
+					<div class="facebook-btn">
+						<fb:login-button scope="public_profile,email,user_events,rsvp_event" size="large" data-max-rows="1" onlogin="checkLoginState();">Login with Facebook</fb:login-button>
+					</div>
 				</div>
 			</div>
 			<div class="pending-review">hi</div>
@@ -20,42 +25,46 @@
 
 		<div id="access-popup" class="overlay">
 			<div class="login-wrap">
-				<h2>Login</h2>
-				<form class="login-form">
-					<div class="form-group">
-						<input type="text" required="true" class="form-control email" placeholder="E-mail">
-					</div>
-					<div class="form-group">
-						<input type="password" required="true" class="form-control password" placeholder="Password">
-					</div>
-					<div class="form-group submit-btn">
-						<input type="submit" class="btn btn-primary" value="Login">
-					</div>
-				</form>
-
-				<div class="or">
-					<h2> or </h2>
+				<div class="manual-login">
+					<form class="login-form">
+						<div class="form-group">
+							<input type="text" required="true" class="form-control email" placeholder="E-mail">
+						</div>
+						<div class="form-group">
+							<input type="password" required="true" class="form-control password" placeholder="Password">
+						</div>
+						<div class="form-group submit-btn">
+							<input type="submit" value="Login">
+						</div>
+					</form>
 				</div>
-				<div class="facebook-btn">
-					<fb:login-button scope="public_profile,email" size="large" data-max-rows="1" onlogin="checkLoginState();">Login with Facebook</fb:login-button>
+
+				<div class="forgot-password">
+					<a href="#" >Forgot password</a>
+				</div>
+
+				<div class="divider">
+					<div class="divider-left"></div>
+					<div class="or"> or </div>
+					<div class="divider-right"></div>
 				</div>
 
 				<div class="join-btn">
-					<a>Join</a>
+					<div>
+						<button class="btn">Join the society</button>
+					</div>
 				</div>
 
-				<div class="">
-					<a href="#" class="forgot-password-btn">Forgot password</a>
-				</div>
+				
 			</div>
 
 			<div class="info-wrap">
 				<form>
 					<div class="form-group">
-						<input type="text" class="form-control first-name" placeholder="first name">
+						<input type="text" required="true" class="form-control first-name" placeholder="first name">
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control last-name" placeholder="last name">
+						<input type="text" required="true" class="form-control last-name" placeholder="last name">
 					</div>
 					<div class="form-group">
 						<input type="text" required="true" class="form-control email" placeholder="E-mail">
@@ -64,12 +73,12 @@
 						<input type="password" required="true" class="form-control password" placeholder="Password">
 					</div>
 					<div class="form-group">
-						<input type="submit" class="btn next-btn" value="Next &gt;">
+						<input type="submit" class="btn next-btn ghost-button" value="Next &gt;">
 					</div>
 				</form>
 			</div>
 			<div class="car-wrap">
-				<h2> Select a car </h2>
+				<h2> Select your car </h2>
 				<div>
 					<select class="form-group make">
 						 <option value="" disabled >Make</option>

@@ -4,8 +4,8 @@ html, body {
 }
 
 body {
-    background-color: #818181;
-    background-size: cover;
+    background: url('/images/racetrackpurpMarkIIII.png') no-repeat;
+	background-size: cover;
 }
 
 .dashboard-link {

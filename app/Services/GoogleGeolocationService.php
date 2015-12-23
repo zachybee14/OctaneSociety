@@ -12,7 +12,7 @@ class GoogleGeolocationService {
 
 	public static function geocodeAddress($address) {
 		
-		$url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . rawurlencode($address['address']) . ',' . rawurlencode($address['city']) . ',' . $address['state'] . '&key=';
+		$url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . rawurlencode($address['street']) . ',' . rawurlencode($address['city']) . ',' . $address['state'] . '&key=';
 
 		$response = self::sendRequest($url);
 
