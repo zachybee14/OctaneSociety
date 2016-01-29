@@ -109,15 +109,15 @@ button {
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.5);
-	
-	> div {
+
+	.inner-wrap {
 		position: absolute;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
-		width: 300px;
-		height: 235px;
+		width: 400px;
 		text-align: center;
+		padding: 50px;
 	}
 
 	.login-wrap {
@@ -255,7 +255,7 @@ button {
 	}
 
 	.car-wrap {
-		
+		height: 235px;
 
 		h2 {
 			margin: 0 0 10px;

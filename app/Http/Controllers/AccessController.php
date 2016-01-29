@@ -21,7 +21,10 @@ use OctaneSociety\Models\User;
 
 class AccessController extends Controller {
 	public function showView() {
-
+		if (Auth::check())
+			return Redirect::to('dashboard');
+		else
+	   		return View::make('access/access');
 	}
 
 	public function postLogin() {
@@ -62,12 +65,6 @@ class AccessController extends Controller {
 
 
 
-	public function showAccessView() {
-		if (Auth::check())
-			return Redirect::to('dashboard');
-		else
-	   		return View::make('access/access');
-	}
 
 	// local login
 	public function processLogin() {
@@ -201,10 +198,10 @@ class AccessController extends Controller {
 			if (strlen($input['password']) < 8)
 				throw new ErrorMessageException('The password provided is too short.');
 
-			$this->createUser([
+			/*$this->createUser([
 				'first_name' => $input['first_name'],
 				'last_name' => 
-			]);
+			]);*/
 
 			// create the user
 			$user = new User;
