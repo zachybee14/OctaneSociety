@@ -5,6 +5,7 @@ html, body {
 
 body {
     background: url('/images/racetrackpurpMarkIIII.png') no-repeat;
+    background-attachment: fixed;
 	background-size: cover;
 }
 

@@ -1,6 +1,6 @@
 $(function() {
 	getArticles();
-	getEvents();
+	populateEvents();
 	$('.article-type').change(getArticles);
 	$('.new-event-btn').click(showAddEventPopup);
 	
@@ -24,15 +24,15 @@ function getArticles() {
 	});
 
 	function __handleSuccess(response) {
-		var $articlesDiv = $('.articles-list');
+		var $articlesTable = $('.articles-list table');
 		var $articleTitleDiv;
 
-		$articlesDiv.empty();
+		$articlesTable.empty();
 
 		$.each(response.articles_titles, function(index, article) {
 			
-			$articleTitleDiv = $('<div>').addClass('link').appendTo($articlesDiv);
-			$('<a></a>').attr('href', '/articles/' + article.id + '"> - ' + article.title).text(article.title).appendTo($articleTitleDiv);
+			$articleTitleTr = $('<tr>').addClass('link').appendTo($articlesTable);
+			$('<td>').attr('href', '/articles/' + article.id + '"> - ' + article.title).text(article.title).appendTo($articleTitleTr);
 		});
 	}
 
@@ -41,7 +41,9 @@ function getArticles() {
 	}
 }
 
-function getEvents() {
+function populateEvents() {
+
+	// get all the events
 	sendRequest({
 		url: '/events/list',
 		type: 'GET',
@@ -50,20 +52,74 @@ function getEvents() {
 	});
 
 	function __handleSuccess(response) {
-		var $eventsDiv = $('.events-list');
-		var $eventTitleDiv;
+		var userAddress = [ response.user_address.address + ' ' + response.user_address.city + ' ' + response.user_address.state ];
 
-		$eventsDiv.empty();
-
+		// create a list of events longitude and latitudes
+		var eventsLonLat = [];
 		$.each(response.events, function(index, eventData) {
-			
-			$eventTitleDiv = $('<div>').addClass('link').appendTo($eventsDiv);
-			$('<a></a>').attr('href', '/events/' + eventData.id + '"> - ' + eventData.name).text(eventData.name).appendTo($eventTitleDiv);
+			eventsLonLat.push(eventData.x_latitude + ',' + eventData.x_longitude);
 		});
+
+		// now go get the distance and travel time from google
+		__getDistances(userAddress, response.events, eventsLonLat);
 	}
 
 	function __handleError(e) {
 		console.log('Failure ', e);
+	}
+
+	// send all event latitudes and longitudes to google to get a dsitance and time relative to the users address
+	// then add those to the events array
+	function __getDistances(userAddress, eventsData, eventsLonLat) {
+		var service = new google.maps.DistanceMatrixService();
+
+		service.getDistanceMatrix( 
+			{
+			    origins: userAddress,
+			    destinations: eventsLonLat,
+			    travelMode: google.maps.TravelMode.DRIVING,
+			    unitSystem: google.maps.UnitSystem.IMPERIAL
+			},
+			__callback
+		);
+
+		function __callback(response, status) {
+			var distanceList = response.rows[0].elements;
+
+			$.each(eventsData, function(index, eventData) {
+				var distanceData = distanceList[index];
+
+				$.extend(eventData, {
+					distance: distanceData.distance.text,
+					duration: distanceData.duration.text
+				});
+			});
+
+			// now add all the events to the view
+			__addEventsToList(eventsData);
+		}
+	}
+
+	// loop through all the events and append them to the events table
+	function __addEventsToList(events) {
+		var $eventsTable = $('.events-list table');
+
+		$eventsTable.empty();
+
+		$.each(events, function(index, event)
+		{
+			$eventTitleTr = $('<tr>').attr('id', event.id).addClass('link').appendTo($eventsTable);
+			$('<td>').text(event.name).appendTo($eventTitleTr);
+			$('<td>').addClass('column-2').text(event.duration + ' away').appendTo($eventTitleTr);
+		});
+
+		var $tr = $eventsTable.find('tr');
+		$tr.click( function(e) {
+			e.preventDefault();
+
+			var $eventId = $(e.currentTarget).attr('id');
+			window.location = 'events/event/' + $eventId;
+		});
 	}
 }
 
@@ -147,13 +203,16 @@ function showAddEventPopup() {
 				};
 			}
 
+			var $types = $popup.find('.event-types');
+			var selectedType = $types.find('option:selected').val();
+
 			sendRequest({
 				url: '/events/create',
 				type: 'POST',
 				data: {
 					fb_id: option.id,
 					name: option.name,
-					type: type,
+					type: selectedType,
 					description: option.description,
 					start_time: option.start_time,
 					location: location
@@ -163,10 +222,8 @@ function showAddEventPopup() {
 			});
 
 			function __handleSuccess(response) {
-				window.location = '/event/test';
-
 				// redirect to the events page
-				console.log(response);
+				window.location = 'events/event/test';
 			}
 
 			function __handleError(e) {

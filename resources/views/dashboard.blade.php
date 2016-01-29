@@ -1,15 +1,17 @@
 @section('header')
 
 <link rel="stylesheet" type="text/css" href="/assets/css/dashboard.css?{{ filemtime('assets/css/dashboard.scss') }}">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrQSHUNIHEz2FbfCaAXb718DHfWJn5PtA"></script>
+<script type="text/javascript" src="/assets/lib/vue/vue.js"></script>
 
 @stop
 
 @include('includes/main-header', [ 'css' => [ 'dashboard' ] ])
 
-<div class="column-wrap">
+<div id="dashboard" class="column-wrap">
 	<div class="center">
 
-		<div class="column-news">
+		<div id="news" class="column-news">
 			<div class="news-title">
 				News
 				<div class="news-filters">
@@ -23,17 +25,21 @@
 			</div>
 		</div>
 
-		<div class="column-events">
+		<div id="events" class="column-events">
 			<div class="events-title">
 				Events
 				<div class="new-event-btn"><a href="#"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i>Add event</a></div>
 			</div>
 			<div class="events-list">
-
+				<table>
+					<tbody>
+						
+					</tbody>
+				</table>
 			</div>
 		</div>
 
-		<div class="column-articles">
+		<div id="articles" class="column-articles">
 			<div class="articles-title">
 				Articles
 				<div class="new-article-btn"><a href="#"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i>Create article</a></div>
@@ -50,7 +56,11 @@
 				</div>
 			</div>
 			<div class="articles-list">
-
+				<table>
+					<tbody>
+						
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>

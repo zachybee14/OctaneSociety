@@ -49,16 +49,26 @@
 	color: white;
 }
 
-.news-title a:focus,
-.news-title a:hover, 
-.events-title a:focus,
-.events-title a:hover, 
-.articles-title a:focus,
-.articles-title a:hover {
-	color: #eee;
-	text-decoration: none;
-	text-shadow: 1px 0px 20px #ccc;
-	outline: 0;
+.news-title,
+.news-title , 
+.events-title,
+.events-title, 
+.articles-title,
+.articles-title {
+
+	a:focus {
+		color: #eee;
+		text-decoration: none;
+		text-shadow: 1px 0px 20px #ccc;
+		outline: 0;
+	}
+	
+	a:hover {
+		color: #eee;
+		text-decoration: none;
+		text-shadow: 1px 0px 20px #ccc;
+		outline: 0;
+	}
 }
 
 #create-article .modal-content {
@@ -96,18 +106,24 @@
 	margin: 20px;
 	text-align: left;
 	font-size: 16px;
-}
 
-.link a {
-	color: white;
-}
+	.column-2 {
+		padding-left: 55px;
+	}
 
-.link a:focus,
-.link a:hover {
-	color: #eee;
-	text-decoration: none;
-	text-shadow: 1px 0px 20px #ccc;
-	outline: 0;
+	tr {
+		color: white;
+	}
+
+	tr:focus,
+	tr:hover {
+		color: #eee;
+		text-decoration: none;
+		color: black;
+		background-color: rgba(255, 255, 255, 0.9);
+		outline: 0;
+		cursor: pointer;
+	}
 }
 
 .news-filters button {

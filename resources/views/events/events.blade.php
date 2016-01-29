@@ -1,6 +1,6 @@
 @section('header')
 
-<link rel="stylesheet" type="text/css" href="/assets/css/events.css?{{ filemtime('assets/css/events.css') }}">
+<link rel="stylesheet" type="text/css" href="/assets/css/events.css?{{ filemtime('assets/css/events.scss') }}">
 
 @stop
 
@@ -9,19 +9,15 @@
 <div class="event-wrap">
 	<div class="event-header">
 		<div class="title">
-			Wicked Big Meet
+			{{$event->name}}
 		</div>
 		<div>
 			<img src="/images/wicked-big-meet.jpg">
 		</div>
 		<div class="attendees">
-			<div>
-				Attendees: 1,300
+			<div id='attendeeCount'>
+				Going/ Maybe/ NotGoing
 			</div>
-			<div>
-				Vendors: 20
-			</div>
-			
 		</div>
 		<div class="counter">
 			105d : 18hr : 30min : 20sec
@@ -30,10 +26,10 @@
 	<div class="event-info">
 		<div class="description">
 			<div class="event-type">
-				Type: import
+				Type: {{$event->type}}
 			</div>
 			<div class="event-makes">
-				Primary Make('s): Subaru
+				Primary Make('s): {{$event->vehicle_makes}}
 			</div>
 			<div class="text-description">
 				<div class="title">	Description </div>

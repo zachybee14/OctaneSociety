@@ -19,20 +19,24 @@ Route::get('/', function() {
 });
 
 Route::group(['prefix' => 'access'], function() {
-	Route::get('', 'AccessController@showAccessView');
+	Route::get('', 'AccessController@showView');
+	
+	Route::post('login', 'AccessController@postLogin');
+	Route::post('fb-login', 'AccessController@postFbLogin');
+	Route::post('register', 'AccessController@postRegister');
 
-	Route::post('login', 'AccessController@processLogin');
-	Route::post('logout', 'AccessController@processLogout');
-	Route::post('facebook/login', 'AccessController@processFacebookLogin');
-	Route::post('signup', 'AccessController@processSignup');
-	Route::post('password-reset', 'AccessController@processPasswordReset');
-	Route::post('add-car', 'AccessController@addCars');
+	Route::post('forgot-password', 'AccessController@postForgotPassword');
+
+	Route::get('reset-password', 'AccessController@showResetPassword');
+	Route::post('reset-password', 'AccessController@postResetPassword');
+
+	Route::get('logout', 'AccessController@logout');
 });
 
 Route::group(['prefix' => 'vehicle'], function() {
 	Route::get('makes', 'VehicleController@getMakes');
-	Route::post('models', 'VehicleController@getModels');
-	Route::post('styles', 'VehicleController@getStyles');
+	Route::get('models', 'VehicleController@getModels');
+	Route::get('styles', 'VehicleController@getStyles');
 });
 
 Route::group(['middleware' => 'auth'], function() {

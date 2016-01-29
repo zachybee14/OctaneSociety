@@ -17,20 +17,32 @@ use OctaneSociety\Models\Event;
 
 class EventsController extends Controller {
 	public function showEventPage($id) {
+		$event = Event::findOrFail($id);
 
-		return View::make('events/events');
-	}
-
-	public function showEventTestPage() {
-		return View::make('events/events');
+		return View::make('events/events', ['event' => $event]);
 	}
 
 	public function getEvents() {
-		$events = Event::select('id', 'name')->get();
+		$events = Event::get();
+
+		$user = Auth::user();
+
+		if (is_null($user->address)) {
+			$address = $user->zip;
+		}
+		else {
+			$address = [
+				'address' => $user->address,
+				'city' => $user->city,
+				'state' => $user->state,
+				'zip' => $user->zip
+			];
+		}
 
 		return Response::json([
 			'success' => true,
-			'events' => $events
+			'events' => $events,
+			'user_address' => $address
 		]);
 	}
 
@@ -82,7 +94,7 @@ class EventsController extends Controller {
 
 		return Response::json([
 			'success' => true,
-			'event_id' => $event->id
+			'event_id' => $event->id,
 		]);
 	}
 

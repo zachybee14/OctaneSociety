@@ -14,11 +14,54 @@ use Facebook\Exceptions\FacebookSDKException;
 use OctaneSociety\Exceptions\ErrorMessageException;
 use OctaneSociety\Helpers\InputValidator;
 use OctaneSociety\Services\EdmundsDataService;
+use OctaneSociety\Services\GoogleGeolocationService;
 
 use OctaneSociety\Models\car;
 use OctaneSociety\Models\User;
 
 class AccessController extends Controller {
+	public function showView() {
+
+	}
+
+	public function postLogin() {
+
+	}
+
+	public function postFbLogin() {
+
+	}
+
+	public function postRegister() {
+
+	}
+
+	public function postForgotPassword() {
+
+	}
+
+	public function showResetPassword() {
+
+	}
+
+	public function postResetPassword() {
+
+	}
+
+	public function logout() {
+
+	}
+
+	private function createUser($details) {
+		// details will include name, fbId (optional), password (optional)
+		// get car info from request. validate against edmunds.
+		// create user. log user in. send user an email. send yourself an email.
+	}
+
+
+
+
+
 	public function showAccessView() {
 		if (Auth::check())
 			return Redirect::to('dashboard');
@@ -44,6 +87,10 @@ class AccessController extends Controller {
 			'success' => true,
 			'approved' => $approved
 		]);
+	}
+
+	public function validateFacebookId() {
+
 	}
 
 	// Facebook Login/signup 
@@ -93,11 +140,13 @@ class AccessController extends Controller {
 
 		$newUser = false;
 		if (!$user) {
+
 			// use facebooks graphUser to get the persons info and then try the sendEmail function and see if you get it
 			$user = new User;
 			$user->fb_id = $fbUser->getId();
 			$user->first_name = $fbUser->getFirstName();
 			$user->last_name = $fbUser->getLastName();
+			//$user->location = $fbUser->getLocation();
 			$user->email = $fbUser->getField('email');
 			$user->save();
 
@@ -110,11 +159,13 @@ class AccessController extends Controller {
 			$approved = false;
 			$newUser = true;
 		}
+
 		else if ($user->accepted == 0) {
 
 			// approved is false because they are not approved 
 			$approved = false;
 		}
+
 		else {
 
 			// log the user in 
@@ -133,7 +184,7 @@ class AccessController extends Controller {
 	}
 
 	// local sign up 
-	function processSignup() {
+	public function processSignup() {
 		$input = Input::all();
 		$user = User::where('fb_id', $input['fb_id'])->first();
 		$newUser = false;
@@ -149,6 +200,11 @@ class AccessController extends Controller {
 				throw new ErrorMessageException('The e-mail address provided is already registered in this system. Please sign into your account.');
 			if (strlen($input['password']) < 8)
 				throw new ErrorMessageException('The password provided is too short.');
+
+			$this->createUser([
+				'first_name' => $input['first_name'],
+				'last_name' => 
+			]);
 
 			// create the user
 			$user = new User;

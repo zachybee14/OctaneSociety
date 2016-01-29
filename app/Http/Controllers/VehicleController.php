@@ -65,8 +65,8 @@ class VehicleController extends Controller {
 		$styles = [];
 		foreach ($rawStylesData as $rawStyle) {
 			$styles[] = [
-				'style_id' => $rawStyle->id,
-				'style_name' => $rawStyle->name
+				'id' => $rawStyle->id,
+				'name' => $rawStyle->name
 			];
 		}
 
