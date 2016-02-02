@@ -83,7 +83,7 @@ function loginWithFacebook() {
 	function __handleLookupSuccess(result) {
 		console.log(result);
 
-		vm.fb_id = fbId;
+		vm.fb_id = result.fb_id;
 		vm.v_state = 'collect-car-info';
 		loadCarMakes();
 	}
@@ -102,7 +102,18 @@ function showJoinForm() {
 }
 
 function proceedFromPersonalInfo() {
+	var passesValidation = vueValidate(vm, {
+		'personal.first_name': 'Please enter your first name.',
+		'personal.last_name': 'Please enter your last name.',
+		'personal.email': 'Please enter your e-mail address.',
+		'personal.password': 'Please enter your password.'
+	});
+
+	if (!passesValidation) return;
+
 	vm.v_state = 'collect-car-info';
+
+	// validate the fields before allowing to move on to the car select
 	loadCarMakes();
 }
 

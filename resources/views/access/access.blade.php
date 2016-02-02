@@ -16,7 +16,7 @@
 
 				<div class="buttons-container" v-invisible="v_state">
 					<button @click="showOverlay">Enter</button>
-					<button @click="loginWithFacebook"><i class="fa fa-facebook-official"></i> Facebook</button>
+					<button @click="loginWithFacebook"><i class="fa fa-facebook-official"></i> Enter with Facebook</button>
 				</div>
 			</div>
 		</div>

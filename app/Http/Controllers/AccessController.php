@@ -32,7 +32,60 @@ class AccessController extends Controller {
 	}
 
 	public function postFbLogin() {
+		$fb = new Facebook([
+			'app_id' => '720657848049692',
+			'app_secret' => '84f302cf974a7038d5b50105f5e49a9c',
+			'default_graph_version' => 'v2.2'
+		]);
 
+		$helper = $fb->getJavaScriptHelper();
+
+		try {
+		    $accessToken = $helper->getAccessToken();
+		}
+		catch (FacebookResponseException $ex) {
+		    Log::error($ex);
+		    throw new ErrorMessageException('An unexpected Facebook Graph exception occured.');
+		}
+		catch (FacebookSDKException $ex) {
+		    Log::error($ex);
+		    throw new ErrorMessageException('An unexpected Facebook SDK exception occurred.');
+		}
+
+		if (!isset($accessToken)) {
+			throw new ErrorMessageException('No cookie set or no OAuth data could be obtained from cookie.');
+		}
+		
+	 	try {
+	 		$response = $fb->get('/me', $accessToken);
+	 	} 
+	 	catch (FacebookResponseException $ex) {
+		    Log::error($ex);
+		    throw new ErrorMessageException('An unexpected Facebook Graph exception occured.');
+		}
+		catch (FacebookSDKException $ex) {
+		    Log::error($ex);
+		    throw new ErrorMessageException('An unexpected Facebook SDK exception occurred.');
+		}
+
+		$fbUser = $response->getGraphUser();
+		$fbUserId = $fbUser->getId();
+		$user = User::where('fb_id', $fbUserId)->first();
+
+		// check if there is a user and if the user has been approved
+		if (!$user) 
+			$user = createUser($fbUser);
+
+		else if ($user->accepted == 0)
+			throw new ErrorMessageException( $user->first_name . ', your account is waiting approval.');
+
+		else
+			Auth::login($user);
+
+		return Response::json([
+			'success' => true,
+			'fb_id' => $user->fb_id
+		]);
 	}
 
 	public function postRegister() {
