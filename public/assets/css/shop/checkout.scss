@@ -1,0 +1,65 @@
+.checkout-container {
+	margin-left: 30px;
+	margin-right: 30px;
+
+	.header {
+		height: 95px;
+		margin-bottom: 30px;
+
+		div {
+			display: inline-block;
+		}
+		
+		.logo {
+			height: 95px;
+			width: 75px;
+			margin-top: 5px;
+			margin-left: -3px;
+			background: url('/images/global/os_logo_nav.png') no-repeat;
+
+			&:hover,
+			&:active {
+				cursor: pointer;
+				transform: scale(1.1);
+			}
+		}
+	}
+
+	.form-wrap {
+		text-align: center;
+
+		.shipping-container {
+			display: inline-block;
+			padding: 10px;
+
+			.section-title {
+				font-family: Open Sans 400;
+				margin-bottom: 20px;
+				font-size: 30px;
+				border-width: 0 0 2px 0;
+				border-image: linear-gradient(to right, white, red, white) 100% 0;
+			}
+
+			form {
+				width: 400px;
+				margin-top: 40px;
+
+				.section {
+					display: flex;
+					flex-direction: row;
+					margin: 10px;
+				}
+
+				.content {
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+
+					span {
+						text-align: left;
+					}
+				}
+			}
+		}
+	}
+}

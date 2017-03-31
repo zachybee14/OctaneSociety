@@ -1,0 +1,372 @@
+// Should be the direct parent for every card size
+.card-container {
+    position: relative;
+
+    .row {
+        height: 264px;
+
+        &:first-child {
+            height: 288px;
+        }
+
+        > div {
+            cursor: pointer;
+        }
+    }
+}
+
+// Contains the Category tags and the Type tag
+.tags-container {
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
+
+    span {
+        display: inline-block;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .category-tags {
+        padding: 8px;
+
+        span {
+            opacity: .8;
+            background: $color-red;
+            border-radius: 100px;
+            box-shadow: $shadow-secondary-1;
+
+            &:hover {
+                background-color: darken($color-red, 8);
+                opacity: 0.9;
+            }
+        }
+    }
+
+    .type-tag {
+        span {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: rgba(46, 66, 97, 1);
+            box-shadow: $shadow-secondary-2;
+        }
+
+        div {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-top: 8px solid rgba(46, 87, 97, 1);
+            border-right: 8px solid transparent;
+        }
+    }
+}
+
+// Contains the title, friends, likes, and distance for events
+.info-container {
+    display: flex;
+    align-items: flex-end;
+    flex: 1;
+    padding: 8px;
+
+    .title {
+        flex: 1;
+
+        .underline {
+            width: 48px;
+            height: 4px;
+            margin-top: 8px;
+            background-color: $color-red;
+        }
+    }
+
+    .friends {
+        display: flex;
+        align-items: center;
+
+        > div {
+            background: rgba(101, 101, 101, 0.75);
+            border-radius: 100px;
+            border: solid 1px #444343;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        > span {
+            font-size: $font-smallest;
+            margin-left: 8px;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            i {
+                margin-right: 4px;
+            }
+        }
+    }
+
+    .distance-container {
+        height: 72px;
+        width: 72px;
+        border-radius: 100%;
+        border: solid 1px white;
+        text-align: center;
+        line-height: 72px;
+        font-size: 18px;
+
+        box-shadow: $shadow-secondary-1;
+        text-shadow: $shadow-secondary-1;
+
+        &:hover {
+            cursor: pointer;
+            background: rgba(101, 101, 101, 0.2);
+        }
+    }
+}
+
+.card-edit {
+    width: 100%;
+
+    a {
+        color: $color-grey-text;
+    }
+
+    .overlay {
+        position: relative;
+
+        .add-photo-select {
+            position: absolute;
+            align-self: center;
+            bottom: 50%;
+
+            > a {
+                font-size: $font-larger;
+            }
+
+            &:hover {
+                color: darken($color-grey-text, 20%);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .category-tags > span {
+        font-size: $font-small;
+        padding: 6px 12px 6px 12px;
+    }
+
+    .type-tag {
+        span {
+            font-size: $font-larger;
+            padding: 12px 16px 12px 16px;
+
+            &:hover {
+                cursor: default;
+            }
+        }
+
+        div {
+            width: 8px;
+            height: 8px;
+            top: 40px;
+        }
+    }
+
+    .title {
+        margin-bottom: 24px;
+        font-size: $font-jumbo;
+
+        &:hover {
+            color: darken($color-grey-text, 20%);
+            cursor: pointer;
+        }
+    }
+
+    .info-container {
+        .distance-container {
+            border: solid 1px $color-grey-text;
+            color: $color-grey-text;
+
+            &:hover {
+                border: solid 1px darken($color-grey-text, 20%);
+                background: none;
+                cursor: pointer;
+                color: darken($color-grey-text, 20%);
+
+                i {
+                    color: darken($color-grey-text, 20%);
+                }
+            }
+
+            i {
+                color: $color-grey-text;
+            }
+        }
+    }
+}
+
+// JUMBO
+.card-jumbo {
+    width: 100%;
+    background-size: 100% auto;
+    background: $test-image;
+
+    .category-tags > span {
+        font-size: $font-small;
+        padding: 6px 12px 6px 12px;
+    }
+
+    .type-tag {
+        span {
+            font-size: $font-larger;
+            padding: 12px 16px 12px 16px;
+        }
+
+        div {
+            width: 8px;
+            height: 8px;
+            top: 40px;
+        }
+    }
+
+    .title {
+        font-size: $font-jumbo;
+    }
+
+    .friends {
+        padding-top: 16px;
+
+        > div {
+            height: 40px;
+            width: 40px;
+            margin-right: 4px;
+        }
+    }
+}
+
+// Large
+.card-large {
+    margin-right: 16px;
+    width: 713px;
+
+    background-size: 100% auto;
+    background: $test-image;
+
+    .category-tags > span {
+        font-size: $font-smaller;
+        padding: 6px 12px 6px 12px;
+    }
+
+    .type-tag {
+        span {
+            font-size: $font-large;
+            padding: 10px 14px 10px 14px;
+        }
+
+        div {
+            top: 32px;
+        }
+    }
+
+    .title {
+        font-size: $font-largest;
+    }
+
+    .friends {
+        padding-top: 16px;
+
+        > div {
+            height: 32px;
+            width: 32px;
+            margin-right: 2px;
+        }
+    }
+}
+
+// Medium
+.card-medium {
+    width: 528px;
+    background-size: 100% auto;
+    background: $test-image;
+
+    .category-tags {
+        span {
+            padding: 4px 8px 4px 8px;
+            font-size: $font-smaller;
+        }
+    }
+
+    .type-tag {
+        span {
+            padding: 8px 12px 8px 12px;
+            font-size: $font-large;
+        }
+
+        div {
+            width: 8px;
+            height: 8px;
+            top: 28px;
+        }
+    }
+
+    .title {
+        font-size: $font-larger;
+    }
+
+    .friends {
+        padding-top: 8px;
+
+        > div {
+            height: 24px;
+            width: 24px;
+            margin-right: 1px;
+        }
+    }
+}
+
+// Small
+.card-small {
+    width: 344px;
+
+    background-size: 100% auto;
+    background: $test-image;
+
+    .category-tags {
+        span {
+            padding: 4px 8px 4px 8px;
+            font-size: $font-smallest;
+        }
+    }
+
+    .type-tag {
+        span {
+            padding: 6px 10px 6px 10px;
+            font-size: $font-base;
+        }
+
+        div {
+            width: 8px;
+            height: 8px;
+            top: 20px;
+        }
+    }
+
+    .title {
+        font-size: $font-large;
+    }
+
+    .friends {
+        padding-top: 8px;
+
+        > div {
+            height: 24px;
+            width: 24px;
+            margin-right: 1px;
+        }
+    }
+}

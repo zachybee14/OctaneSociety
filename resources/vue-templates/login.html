@@ -1,0 +1,79 @@
+<div id="login">
+    <div class="background">
+        <img src="">
+    </div>
+    <div class="content-container">
+        <div class="logo-container">
+            <div>
+                <img>
+            </div>
+        </div>
+        <div class="actions-container">
+            <div class="action-modal">
+                <div class="header radio-switcher">
+                    <label class="login">
+                        <input  v-model="state" type="radio" name="login" value="login">
+                        <span><a>Login</a></span>
+                    </label>
+                    <label class="sign-up">
+                        <input v-model="state" type="radio" name="login" value="signUp">
+                        <span><a>Sign Up</a></span>
+                    </label>
+                </div>
+                <div class="actions">
+                    <div v-if="state == 'login'" class="login">
+                        <div class="facebook">
+                            <button @click.prevent="loginFacebook" class="btn-facebook"><i class="fa fa-facebook-official"></i> Log in with Facebook</button>
+                            <div>We won't ever post without asking.</div>
+                        </div>
+                        <h2><span>or</span></h2>
+                        <div class="email-password">
+                            <input v-model="email" type="email " name="email" placeholder="Email">
+                            <input v-model="password" type="password" name="password" placeholder="Password">
+                        </div>
+                        <button class="login-btn" @click.prevent="loginManually">Log In</button>
+                    </div>
+
+                    <div v-if="state == 'signUp' && signupState == 'auth'" class="login">
+                        <div class="facebook">
+                            <button @click.prevent="loginFacebook" class="btn-facebook"><i class="fa fa-facebook-official"></i> Sign up with Facebook</button>
+                            <div>We won't ever post without asking.</div>
+                        </div>
+                        <h2><span>or</span></h2>
+                        <div class="email-password">
+                            <input v-model="email" type="email" name="email" placeholder="Email">
+                            <input v-model="password" type="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" name="show password"><span>Show password</span>
+                        </div>
+                        <button class="login-btn" @click.prevent="signUpManually">Sign up</button>
+                    </div>
+
+                    <div v-if="state == 'signUp' && signupState == 'car'" class="select-container-vehicle">
+                        <span>Select Your Car</span>
+                        <select v-model="vehicle.year" @change="loadMakes">
+                            <option disabled :value="null">Select a year</option>
+                            <option v-for="year in years">{{ year }}</option>
+                        </select>
+                        <select v-model="vehicle.make" v-disabled="!makes" @change="loadModels">
+                            <option v-if="makes == null" :value="null">Loading makes...</option>
+                            <option v-else disabled :value="null">Select a make</option>
+                            <option v-if="makes" v-for="make in makes" :value="make">{{ make.name }}</option>
+                        </select>
+                        <select v-model="vehicle.model" v-disabled="!models" @change="loadStyles">
+                            <option :value="null">Select a model</option>
+                            <option v-if="models" v-for="model in models" :value="model">{{ model.name }}</option>
+                        </select>
+                        <select v-model="vehicle.style" v-disabled="!styles">
+                            <option v-if="styles == null" :value="null">Loading styles...</option>
+                            <option v-else :value="null">Select a style</option>
+                            <option v-if="styles" v-for="style in styles" :value="style">{{ style.name }}</option>
+                        </select>
+                        <button @click.prevent="continueSignup" v-disabled="vehicle.style == null" disabled="disabled">Continue ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,72 +11,59 @@
 |
 */
 
-Route::get('/', function() {
+/*Route::get('shop', 'Shop@showMainView');
+Route::get('shop/{category}', 'Shop@showCategoryView');
+Route::get('shop/{category}/{product}', 'Shop@showProductView');
+Route::get('checkout', 'Shop@showCheckoutView');
+Route::get('/', 'Shop@showCheckoutView');*/
+
+/*Route::get('/', function() {
 	if (Auth::check())
 		return Redirect::to('dashboard');
 	else
 		return Redirect::to('access');
-});
+});*/
+Route::group(['prefix' => 'api'], function() {
+    Route::post('login', 'Login@login');
+    Route::post('login/facebook', 'Login@fbLogin');
 
-Route::group(['prefix' => 'access'], function() {
-	Route::get('', 'AccessController@showView');
-	
-	Route::post('login', 'AccessController@postLogin');
-	Route::post('fb-login', 'AccessController@postFbLogin');
-	Route::post('register', 'AccessController@postRegister');
+    Route::post('forgot-password', 'Login@postForgotPassword');
+    Route::post('reset-password', 'Login@postResetPassword');
+    Route::get('logout', 'Login@logout');
 
-	Route::post('forgot-password', 'AccessController@postForgotPassword');
+	Route::group(['prefix' => 'vehicle'], function() {
+		Route::get('makes', 'Vehicles@getMakes');
+		Route::get('styles', 'Vehicles@getStyles');
 
-	Route::get('reset-password', 'AccessController@showResetPassword');
-	Route::post('reset-password', 'AccessController@postResetPassword');
-
-	Route::get('logout', 'AccessController@logout');
-});
-
-Route::group(['prefix' => 'vehicle'], function() {
-	Route::get('makes', 'VehicleController@getMakes');
-	Route::get('models', 'VehicleController@getModels');
-	Route::get('styles', 'VehicleController@getStyles');
-});
-
-Route::group(['middleware' => 'auth'], function() {
-	Route::get('dashboard', function() {
-		return View::make('dashboard');
-	});
-	
-	Route::get('profile', function() {
-		return View::make('profile/profile');
-	});
-	Route::get('garage', function() {
-		return View::make('garage/garage-main');
-	});
-	Route::get('create-article', function() {
-		return View::make('pillars/articles-create');
-	});
-	Route::get('add-friend', function() {
-		return View::make('add-freind');
-	});
-	Route::get('add-company', function() {
-		return View::make('add-company');
+		Route::post('selection-log', 'Vehicles@logVehicle');
 	});
 
-	Route::group(['prefix' => 'admin'], function() {
-		Route::get('request-list', function() {
-			return View::make('admin/request-list');
+	//Route::group(['middleware' => 'auth'], function() {
+		Route::group(['prefix' => 'admin'], function() {
+			Route::get('join-requests', 'Users@getNonAcceptedUsers');
 		});
-		Route::get('join-requests', 'UsersController@getNonAcceptedUsers');
-	});
 
-	Route::group(['prefix' => 'events'], function() {
-		Route::get('event/test', 'EventsController@showEventTestPage');
-		Route::get('event/{id}', 'EventsController@showEventPage');
-		Route::get('list', 'EventsController@getEvents');
-		Route::post('create', 'EventsController@createEvent');
-	});
+		Route::group(['prefix' => 'events'], function() {
+			Route::post('filtered', 'Events@getFilteredEvents');
+			Route::post('create', 'Events@createEvent');
+			Route::post('{id}/user-status', 'Events@addUserStatus');
+			Route::post('{id}/comments', 'Events@addComment');
+		});
 
-	Route::resource('states', 'StatesController');
-	Route::resource('cars', 'CarsController');
-	Route::resource('bulletin/posts', 'BulletinController');
-	Route::resource('articles', 'ArticleController');
-	Route::get('article-titles', 'ArticleController@getTitles');
+		Route::group(['prefix' => 'cruises'], function() {
+			Route::post('create', 'Cruises@createCruise');
+			Route::post('users', 'Cruises@addCruiseUsers');
+			Route::post('{id}/comment', 'Cruises@addComment');
+		});
+
+		Route::group(['prefix' => 'articles'], function() {
+			Route::resource('/', 'Articles');
+			Route::get('article-titles', 'Articles@getTitles');
+			Route::post('{id}/comment', 'Articles@addComment');
+		});
+    //});
 });
+
+Route::get('', 'SPA@render');
+Route::get('spa-templates.js', 'SPA@deliverTemplates');
+

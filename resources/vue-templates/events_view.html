@@ -1,0 +1,296 @@
+<div id="events-view" class="secondary-container">
+	<div class="card-jumbo">
+		<div class="overlay">
+			<div class="tags-container">
+				<div class="category-tags">
+					<span>Engine</span>
+					<span>Turbocharger</span>
+					<span>Gasoline</span>
+				</div>
+			</div>
+			<div class="info-container">
+				<div class="title">
+					<span>The Best Way to Modify Your Car</span>
+					<div class="underline"></div>
+					<div class="friends">
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<div></div>
+						<span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+					</div>
+				</div>
+
+				<div class="distance-container">
+					12mi
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="endorsements-container">
+
+	</div>
+	<div class="more-info-container">
+
+	</div>
+	<div class="body-container">
+
+	</div>
+	<div class="comments-container">
+
+	</div>
+
+	<div v-if='addCruise' class="add-cruise">
+		<form>
+			Cruise Name: <br>
+			<input class="inputs" v-model="cruise.name" autofocus type="text" size="25" placeholder="Cruise Name"><p>
+			Start Time: <br>
+			<input v-model="cruise.start_time" type="time" id="startTime" name="start_time"><p>
+			Start Location: <br>
+			<input v-model="cruise.location.address" type="text" size="25"name="address" placeholder="Address"><br>
+			<input v-model="cruise.location.city" type="text" size="16" name="city" placeholder="City">
+			<select v-model="cruise.location.state">
+				<option value="AL">AL</option>
+				<option value="AK">AK</option>
+				<option value="AZ">AZ</option>
+				<option value="AR">AR</option>
+				<option value="CA">CA</option>
+				<option value="CO">CO</option>
+				<option value="CT">CT</option>
+				<option value="DE">DE</option>
+				<option value="DC">DC</option>
+				<option value="FL">FL</option>
+				<option value="GA">GA</option>
+				<option value="HI">HI</option>
+				<option value="ID">ID</option>
+				<option value="IL">IL</option>
+				<option value="IN">IN</option>
+				<option value="IA">IA</option>
+				<option value="KS">KS</option>
+				<option value="KY">KY</option>
+				<option value="LA">LA</option>
+				<option value="ME">ME</option>
+				<option value="MD">MD</option>
+				<option value="MA">MA</option>
+				<option value="MI">MI</option>
+				<option value="MN">MN</option>
+				<option value="MS">MS</option>
+				<option value="MO">MO</option>
+				<option value="MT">MT</option>
+				<option value="NE">NE</option>
+				<option value="NV">NV</option>
+				<option value="NH">NH</option>
+				<option value="NJ">NJ</option>
+				<option value="NM">NM</option>
+				<option value="NY">NY</option>
+				<option value="NC">NC</option>
+				<option value="ND">ND</option>
+				<option value="OH">OH</option>
+				<option value="OK">OK</option>
+				<option value="OR">OR</option>
+				<option value="PA">PA</option>
+				<option value="RI">RI</option>
+				<option value="SC">SC</option>
+				<option value="SD">SD</option>
+				<option value="TN">TN</option>
+				<option value="TX">TX</option>
+				<option value="UT">UT</option>
+				<option value="VT">VT</option>
+				<option value="VA">VA</option>
+				<option value="WA">WA</option>
+				<option value="WV">WV</option>
+				<option value="WI">WI</option>
+				<option value="WY">WY</option>
+			</select><br>
+			<input v-model="cruise.location.zip" type="text" name="zip" size="5" placeholder="Zip"><p>
+
+			<div class="stops-container">
+
+			</div>
+
+			<button v-on:click="addStop">Add a stop</button>
+
+
+
+			<!--Stop 1: <br>
+			<input v-model="cruise.stops.one.street" type="text" size="25"name="address" placeholder="Address"><br>
+
+
+			<input v-model="cruise.stops.one.city" type="text" size="16" name="city" placeholder="City">
+			<select v-model="cruise.stops.one.state">
+				<option value="AL">AL</option>
+				<option value="AK">AK</option>
+				<option value="AZ">AZ</option>
+				<option value="AR">AR</option>
+				<option value="CA">CA</option>
+				<option value="CO">CO</option>
+				<option value="CT">CT</option>
+				<option value="DE">DE</option>
+				<option value="DC">DC</option>
+				<option value="FL">FL</option>
+				<option value="GA">GA</option>
+				<option value="HI">HI</option>
+				<option value="ID">ID</option>
+				<option value="IL">IL</option>
+				<option value="IN">IN</option>
+				<option value="IA">IA</option>
+				<option value="KS">KS</option>
+				<option value="KY">KY</option>
+				<option value="LA">LA</option>
+				<option value="ME">ME</option>
+				<option value="MD">MD</option>
+				<option value="MA">MA</option>
+				<option value="MI">MI</option>
+				<option value="MN">MN</option>
+				<option value="MS">MS</option>
+				<option value="MO">MO</option>
+				<option value="MT">MT</option>
+				<option value="NE">NE</option>
+				<option value="NV">NV</option>
+				<option value="NH">NH</option>
+				<option value="NJ">NJ</option>
+				<option value="NM">NM</option>
+				<option value="NY">NY</option>
+				<option value="NC">NC</option>
+				<option value="ND">ND</option>
+				<option value="OH">OH</option>
+				<option value="OK">OK</option>
+				<option value="OR">OR</option>
+				<option value="PA">PA</option>
+				<option value="RI">RI</option>
+				<option value="SC">SC</option>
+				<option value="SD">SD</option>
+				<option value="TN">TN</option>
+				<option value="TX">TX</option>
+				<option value="UT">UT</option>
+				<option value="VT">VT</option>
+				<option value="VA">VA</option>
+				<option value="WA">WA</option>
+				<option value="WV">WV</option>
+				<option value="WI">WI</option>
+				<option value="WY">WY</option>
+			</select><br>
+			<input v-model="cruise.stops.one.zip" type="text" name="zip" size="5" placeholder="Zip"><p>
+
+			Stop 2: <br>
+			<input v-model="cruise.stops.two.street" type="text" size="25" name="address" placeholder="Address"><br>
+			<input v-model="cruise.stops.two.city" type="text" size="16" name="city" placeholder="City">
+			<select v-model="cruise.stops.two.state">
+				<option value="AL">AL</option>
+				<option value="AK">AK</option>
+				<option value="AZ">AZ</option>
+				<option value="AR">AR</option>
+				<option value="CA">CA</option>
+				<option value="CO">CO</option>
+				<option value="CT">CT</option>
+				<option value="DE">DE</option>
+				<option value="DC">DC</option>
+				<option value="FL">FL</option>
+				<option value="GA">GA</option>
+				<option value="HI">HI</option>
+				<option value="ID">ID</option>
+				<option value="IL">IL</option>
+				<option value="IN">IN</option>
+				<option value="IA">IA</option>
+				<option value="KS">KS</option>
+				<option value="KY">KY</option>
+				<option value="LA">LA</option>
+				<option value="ME">ME</option>
+				<option value="MD">MD</option>
+				<option value="MA">MA</option>
+				<option value="MI">MI</option>
+				<option value="MN">MN</option>
+				<option value="MS">MS</option>
+				<option value="MO">MO</option>
+				<option value="MT">MT</option>
+				<option value="NE">NE</option>
+				<option value="NV">NV</option>
+				<option value="NH">NH</option>
+				<option value="NJ">NJ</option>
+				<option value="NM">NM</option>
+				<option value="NY">NY</option>
+				<option value="NC">NC</option>
+				<option value="ND">ND</option>
+				<option value="OH">OH</option>
+				<option value="OK">OK</option>
+				<option value="OR">OR</option>
+				<option value="PA">PA</option>
+				<option value="RI">RI</option>
+				<option value="SC">SC</option>
+				<option value="SD">SD</option>
+				<option value="TN">TN</option>
+				<option value="TX">TX</option>
+				<option value="UT">UT</option>
+				<option value="VT">VT</option>
+				<option value="VA">VA</option>
+				<option value="WA">WA</option>
+				<option value="WV">WV</option>
+				<option value="WI">WI</option>
+				<option value="WY">WY</option>
+			</select><br>
+			<input v-model="cruise.stops.two.zip" type="text" name="zip" size="5" placeholder="Zip"><p>
+
+			Stop 3: <br>
+			<input v-model="cruise.stops.three.street" type="text" size="25" name="address" placeholder="Address"><br>
+			<input v-model="cruise.stops.three.city" type="text" size="16" name="city" placeholder="City">
+			<select v-model="cruise.stops.three.state">
+				<option value="AL">AL</option>
+				<option value="AK">AK</option>
+				<option value="AZ">AZ</option>
+				<option value="AR">AR</option>
+				<option value="CA">CA</option>
+				<option value="CO">CO</option>
+				<option value="CT">CT</option>
+				<option value="DE">DE</option>
+				<option value="DC">DC</option>
+				<option value="FL">FL</option>
+				<option value="GA">GA</option>
+				<option value="HI">HI</option>
+				<option value="ID">ID</option>
+				<option value="IL">IL</option>
+				<option value="IN">IN</option>
+				<option value="IA">IA</option>
+				<option value="KS">KS</option>
+				<option value="KY">KY</option>
+				<option value="LA">LA</option>
+				<option value="ME">ME</option>
+				<option value="MD">MD</option>
+				<option value="MA">MA</option>
+				<option value="MI">MI</option>
+				<option value="MN">MN</option>
+				<option value="MS">MS</option>
+				<option value="MO">MO</option>
+				<option value="MT">MT</option>
+				<option value="NE">NE</option>
+				<option value="NV">NV</option>
+				<option value="NH">NH</option>
+				<option value="NJ">NJ</option>
+				<option value="NM">NM</option>
+				<option value="NY">NY</option>
+				<option value="NC">NC</option>
+				<option value="ND">ND</option>
+				<option value="OH">OH</option>
+				<option value="OK">OK</option>
+				<option value="OR">OR</option>
+				<option value="PA">PA</option>
+				<option value="RI">RI</option>
+				<option value="SC">SC</option>
+				<option value="SD">SD</option>
+				<option value="TN">TN</option>
+				<option value="TX">TX</option>
+				<option value="UT">UT</option>
+				<option value="VT">VT</option>
+				<option value="VA">VA</option>
+				<option value="WA">WA</option>
+				<option value="WV">WV</option>
+				<option value="WI">WI</option>
+				<option value="WY">WY</option>
+			</select><br>
+			<input v-model="cruise.stops.three.zip" type="text" name="zip" size="5" placeholder="Zip"><p> -->
+
+			<input type ="button" value="Create Cruise" id="createCruise" v-on:click="createCruise">
+		</form>
+	</div>
+</div>

@@ -1,0 +1,35 @@
+<div id="articles-edit" class="secondary-container">
+    <div class="header-secondary">
+        <button @click="" class="btn-facebook"><i class="fa fa-facebook-official"></i> Share to Facebook</button>
+        <div>
+            <button @click="" class="btn-save">Save</button>
+            <button @click="$router.push('/articles')" class="btn-cancel">Cancel</button>
+        </div>
+    </div>
+    <div class="card-edit">
+        <div class="overlay">
+            <div class="add-photo-select"><a>+ Add Photo</a></div>
+            <div class="tags-container">
+                <div class="category-tags">
+                    <span><input placeholder="+ Add Tag"></span>
+                </div>
+                <div class="type-tag">
+                    <span>Article</span>
+                    <div></div>
+                </div>
+            </div>
+            <div class="info-container">
+                <div class="title">
+                    <input placeholder="+ Add a Title">
+                    <div class="underline"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="endorsements-container">
+
+    </div>
+    <div class="body-container">
+        <textarea placeholder="Write your article..."></textarea>
+    </div>
+</div>

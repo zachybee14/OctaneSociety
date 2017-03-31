@@ -1,0 +1,28 @@
+@import '_variables';
+
+#vehicles {
+
+    .filter-header {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .select-container-vehicle {
+        display: flex;
+
+        > span {
+            margin-right: 8px;
+        }
+
+        > div {
+            width: 104px;
+            margin-right: 8px;
+            font-size: $font-small;
+            border: solid 1px $color-grey-input-border;
+        }
+
+        :nth-child(5) {
+            width: 144px;
+        }
+    }
+}

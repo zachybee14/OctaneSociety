@@ -1,0 +1,168 @@
+@import '_variables';
+
+#login {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .background {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        position: fixed;
+        background: url('/images/backgrounds/wrxandsti.jpg') no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(2px) brightness(65%);
+
+        @media (max-width: 424px) {
+            background: none;
+        }
+    }
+
+    .content-container {
+        display: flex;
+        position: relative;
+        height: 100%;
+        padding-left: 8px;
+        padding-right: 8px;
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+
+            div:first-child {
+                margin-top: auto;
+                margin-bottom: auto;
+
+                img {
+                    height: 512px;
+                    content: url('/images/logos/main-logo-white.png');
+                    max-width: 100%;
+
+                    &.darken {
+                        opacity: 0.25;
+                    }
+                }
+            }
+        }
+
+        .actions-container {
+            display: flex;
+            width: 50%;
+
+            .action-modal {
+                display: flex;
+                flex-direction: column;
+                height: 512px;
+                width: 512px;
+                margin: auto;
+                background-color: white;
+                text-align: center;
+
+                .header {
+                    input:checked ~ span {
+                        a {
+                            padding-bottom: 2px;
+                            border-bottom: 2px solid $color-red;
+                        }
+                    }
+
+                    span {
+                        font-size: $font-large;
+
+                        @media (max-width: 424px) {
+                            font-size: 16px;
+                        }
+                    }
+                }
+
+                .actions {
+                    flex: 1;
+                    padding: 24px;
+
+                    button {
+                        padding: 18px;
+                        font-size: $font-large;
+                    }
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        height: 100%;
+                    }
+
+                    .login {
+                        h2 {
+                            margin-bottom: 30px;
+                            text-align: center;
+                            border-bottom: 1px solid #a9a9a9;
+                            line-height: 0.1em;
+
+                            span {
+                                color: #a9a9a9;
+                                font-size: 14px;
+                                background: white;
+                                padding:0 10px;
+                            }
+                        }
+
+                        > button {
+                            position: absolute;
+                            width: 100%;
+                            bottom:0;
+                        }
+
+                        .facebook {
+                            margin-bottom: 30px;
+
+                            button {
+                                width: 100%;
+                                margin-bottom: 8px;
+                            }
+                        }
+
+                        .email-password input {
+                            width: 100%;
+                            margin-bottom: 8px;
+                            padding: 24px;
+                            border: 1px solid $color-grey-input-border;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+
+                        .checkbox {
+                            text-align: left;
+                        }
+                    }
+
+                    .select-container-vehicle {
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+
+                        > span {
+                            padding: 24px;
+                            font-size: $font-large;
+                            font-weight: 400;
+                        }
+
+                        select {
+                            margin-bottom: 8px;
+                            font-size: $font-base;
+                        }
+
+                        > button {
+                            position: absolute;
+                            width: 100%;
+                            bottom:0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

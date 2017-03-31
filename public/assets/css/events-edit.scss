@@ -1,0 +1,45 @@
+@import '_variables';
+@import 'card';
+
+#events-edit {
+
+    .endorsements-container {
+        select {
+            width: 200px;
+        }
+    }
+	/*display: flex;
+	justify-content: center;
+
+	.create {
+
+		form {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			margin-top: 50px;
+			width: 500px;
+
+			div {
+				margin: 2px;
+			}
+
+			select {
+				width: auto;
+				height: 36px;
+			    margin: 3px 0;
+			    border: 2px solid #ccc;
+			    -webkit-transition: 0.5s;
+			    transition: 0.5s;
+			    outline: none;
+			}
+
+			input {
+				
+				&:focus {
+					border: 2px solid #555;
+				}
+			}
+		}
+	}*/
+}

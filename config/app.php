@@ -80,7 +80,7 @@ return [
 
     'key' => env('APP_KEY', 'PuhGm5LHWNKiTpa8p9StrzZduYQdrT8l'),
 
-    'cipher' => MCRYPT_RIJNDAEL_128,
+    'cipher' => 'AES-256-CBC',
 
     /*
     |--------------------------------------------------------------------------
@@ -145,6 +145,7 @@ return [
         OctaneSociety\Providers\EventServiceProvider::class,
         OctaneSociety\Providers\RouteServiceProvider::class,
 
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
     ],
 
     /*

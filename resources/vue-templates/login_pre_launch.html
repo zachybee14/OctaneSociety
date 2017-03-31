@@ -1,0 +1,84 @@
+<div id="login-pre-launch">
+    <div class="background">
+        <img src="">
+    </div>
+    <div class="content-container">
+        <div class="background">
+            <img src="">
+        </div>
+        <div class="content-container">
+            <div class="logo-container">
+                <div>
+                    <img>
+                    <div class="description">
+                        <span>- Decide faster about what, where, and how you should modify your car</span>
+                        <span>- Get credit for your knowledge and creativity </span>
+                        <span>- Discover new people, ideas, and information</span>
+                    </div>
+                </div>
+            </div>
+            <div class="actions-container">
+                <div class="action-modal">
+                    <div class="header">
+                        <span><a>Pre-Launch Sign Up</a></span>
+                    </div>
+                    <div class="actions">
+                        <div v-if="signupState == 'car'" class="select-car-container">
+                            <h1><span>Select Your Car</span></h1>
+                            <div>
+                                <select v-model="vehicle.year" @change="loadMakes">
+                                    <option disabled :value="null">Select a year</option>
+                                    <option v-for="year in years">{{ year }}</option>
+                                </select>
+                                <span class="caret"></span>
+                            </div>
+                            <div>
+                                <select v-model="vehicle.make" v-disabled="!makes" disabled @change="loadModels">
+                                    <option v-if="makes == null" :value="null">Loading makes...</option>
+                                    <option v-else disabled :value="null">Select a make</option>
+                                    <option v-if="makes" v-for="make in makes" :value="make">{{ make.name }}</option>
+                                </select>
+                                <span class="caret"></span>
+                            </div>
+                            <div>
+                                <select v-model="vehicle.model" v-disabled="!models" disabled @change="loadStyles">
+                                    <option :value="null">Select a model</option>
+                                    <option v-if="models" v-for="model in models" :value="model">{{ model.name }}</option>
+                                </select>
+                                <span class="caret"></span>
+                            </div>
+                            <div>
+                                <select v-model="vehicle.style" v-disabled="!styles" disabled>
+                                    <option v-if="styles == null" :value="null">Loading styles...</option>
+                                    <option v-else :value="null">Select a style</option>
+                                    <option v-if="styles" v-for="style in styles" :value="style">{{ style.name }}</option>
+                                </select>
+                                <span class="caret"></span>
+                            </div>
+                            <div>
+                                <button @click.prevent="continueSignup" v-disabled="vehicle.style == null" disabled >Continue ></button>
+                            </div>
+                        </div>
+                        <div v-if="signupState == 'auth'" class="login">
+                            <div class="facebook">
+                                <button @click.prevent="loginFacebook" class="facebook-btn"><i class="fa fa-facebook-official"></i> Sign up with Facebook</button>
+                                <div>We won't ever post without asking.</div>
+                            </div>
+                            <h2><span>or</span></h2>
+                            <div class="email-password">
+                                <input v-model="email" type="email" name="email" placeholder="Email">
+                                <input v-model="password" type="password" name="password" placeholder="Password">
+                            </div>
+                            <div class="checkbox">
+                                <input type="checkbox" name="show password"><span>Show password</span>
+                            </div>
+                            <div>
+                                <button class="login-btn" @click.prevent="signUpManually">Sign up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

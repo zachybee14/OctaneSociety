@@ -1,0 +1,150 @@
+<div id="events-edit" class="secondary-container">
+	<div class="header-secondary">
+		<button @click="" class="btn-facebook"><i class="fa fa-facebook-official"></i> Share to Facebook</button>
+		<div>
+			<button @click="" class="btn-save">Save</button>
+			<button @click="$router.push('/events')" class="btn-cancel">Cancel</button>
+		</div>
+	</div>
+	<div class="card-edit">
+		<div class="overlay">
+			<div class="add-photo-select"><a href="#">+ Add Photo</a></div>
+			<div class="tags-container">
+				<div class="category-tags">
+					<span>+ Add Tag</span>
+				</div>
+				<div class="type-select">
+					<select>
+						<option>Select type</option>
+					</select>
+				</div>
+			</div>
+			<div class="info-container">
+				<div class="title">
+					<input placeholder="+ Add a Title">
+					<div class="underline"></div>
+				</div>
+				<div>
+					<input class="location-input" placeholder="+ Add Event Location">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="endorsements-container">
+		<select>
+			<option>Minimum year</option>
+		</select>
+		<select>
+			<option>Maximum year</option>
+		</select>
+		<select>
+			<option>Make</option>
+		</select>
+		<div>
+			<checkbox></checkbox>
+		</div>
+	</div>
+	<div class="body-container">
+
+	</div>
+
+	<!--
+	<div class="create">
+		<form>
+			<div class="name">
+				<h3>Event Name:</h3>
+				<input type="text" v-model="event.name" autofocus placeholder="Event Name">
+			</div>
+
+			<div class="description">
+				<h3>Description: </h3>
+				<input v-model="event.description" type="text" name="description" placeholder="Describe the event">
+			</div>
+
+			<div class="location">
+				<h3>Location: <h3>
+				<input v-model="event.location.address" type="text" size="25"name="address" placeholder="Address"><br>
+				<input v-model="event.location.city" type="text" size="16" name="city" placeholder="City">
+				<select v-model="event.location.state">
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AZ">AZ</option>
+					<option value="AR">AR</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DE">DE</option>
+					<option value="DC">DC</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="IA">IA</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="ME">ME</option>
+					<option value="MD">MD</option>
+					<option value="MA">MA</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MS">MS</option>
+					<option value="MO">MO</option>
+					<option value="MT">MT</option>
+					<option value="NE">NE</option>
+					<option value="NV">NV</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NY">NY</option>
+					<option value="NC">NC</option>
+					<option value="ND">ND</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WV">WV</option>
+					<option value="WI">WI</option>
+					<option value="WY">WY</option>
+				</select>
+				<input v-model="event.location.zip" type="text" name="zip" size="5" placeholder="Zip"><p>
+			</div>
+
+			<div class="days-container">
+				<h3>Dates and Times:</h3>
+				<div class="day" v-if="event.days" v-for="day in event.days">
+					<span>Date:</span>
+					<input v-model="day.date" type="date" name="date">
+					<span>Start Time:</span>
+					<input v-model="day.start_time" type="time" id="startTime" width="75%" float="right" name="start_time">
+					<span>End Time:</span>
+					<input width="75%" float="right" v-model="day.end_time" type="time" id="endTime" name="end_time">
+				</div>
+				<input type ="button" value="Add Another Day" class="add-day" v-on:click="addDay">
+			</div>
+
+			<div class="type">
+				<select v-model="event.type">
+					<option selected="selected" disabled="disabled">Select Event Type</option>
+					<option value="meet">Meet</option>
+					<option value="track">Track</option>
+					<option value="show">Show</option>
+					<option value="trackshow">Track & Show</option>
+				</select>
+			</div>
+			<input type ="button" value="Create Event" id="createEvent" v-on:click="createEvent">
+		</form>
+	</div>
+	-->
+</div>

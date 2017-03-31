@@ -1,9 +1,5 @@
-$(function() {
-	//http://octanesociety.dev/profile
-	// profile dropdown: Profile, Edit Profile, Logout
-	$('#profile-link').click();
-	$('.logout-btn').click(processLogout);
-});
+//http://octanesociety.dev/profile
+// profile dropdown: Profile, Edit Profile, Logout
 
 function processLogout() {
 	sendRequest({

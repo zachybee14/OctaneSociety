@@ -1,0 +1,191 @@
+@import '_variables';
+
+#login-pre-launch {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .background {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        position: fixed;
+        background: url('/images/backgrounds/wrxandsti.jpg') no-repeat center center fixed;
+        background-size: cover;
+        filter: blur(2px) brightness(55%);
+
+        @media (max-width: 424px) {
+            background: none;
+        }
+    }
+
+    .content-container {
+        display: flex;
+        position: relative;
+        height: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            width: 50%;
+
+            div:first-child {
+                margin-top: auto;
+                margin-bottom: auto;
+                height: 512px;
+
+                img {
+                    content: url('/images/logos/main-logo-white.png');
+                    max-width: 100%;
+
+                    &.darken {
+                        opacity: 0.25;
+                    }
+                }
+
+                .description {
+                    display: flex;
+                    flex-direction: column;
+
+                    span {
+                        display: block;
+                        margin: 8px;
+                        font-size: 24px;
+                        font-weight: 500;
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .actions-container {
+            display: flex;
+            width: 50%;
+
+            .action-modal {
+                display: flex;
+                flex-direction: column;
+                height: 512px;
+                width: 512px;
+                margin: auto;
+                background-color: white;
+                text-align: center;
+
+                .header {
+                    padding-top: 24px;
+
+                    span {
+                        a {
+                            font-size: 48px;
+                            font-weight: 400;
+
+                            padding-bottom: 2px;
+                            border-bottom: 2px solid $color-red;
+                        }
+                    }
+                }
+
+                .actions {
+                    flex: 1;
+                    padding: 24px;
+
+                    button {
+                        width: 100%;
+                        padding: 24px;
+                        font-size: 16px;
+                    }
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        height: 100%;
+                    }
+
+                    .login {
+
+                        h2 {
+                            width: 100%;
+                            text-align: center;
+                            border-bottom: 1px solid #a9a9a9;
+                            line-height: 0.1em;
+                            margin-bottom: 6%;
+
+                            span {
+                                color: #a9a9a9;
+                                font-size: 14px;
+                                background: white;
+                                padding:0 10px;
+                            }
+                        }
+
+                        > div:last-child {
+                            position: absolute;
+                            width: 100%;
+                            bottom:0;
+                        }
+
+                        .facebook {
+                            margin-bottom: 32px;
+
+                            div {
+                                margin-top: 8px;
+                            }
+                        }
+
+                        .email-password input {
+                            width: 100%;
+                            margin-bottom: 8px;
+                            padding: 24px;
+                            box-sizing: border-box;
+                            border: 1px solid $color-grey-input-border;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+
+                        .checkbox {
+                            text-align: left;
+                        }
+                    }
+
+                    .select-car-container {
+                        display: flex;
+                        flex-direction: column;
+                        position: relative;
+                        height: 100%;
+
+                        h1 {
+                            padding: 24px;
+                            font-size: 22px;
+                            font-weight: bold;
+                        }
+
+                        > div:last-child {
+                            position: absolute;
+                            width: 100%;
+                            bottom:0;
+                        }
+
+                        select {
+                            width: 100%;
+                            padding: 8px;
+                            font-size: 16px;
+                            border-radius: 0px;
+                            -webkit-appearance: none;
+                            margin-bottom: 8px;
+                            color: $color-grey-select-text;
+
+                            &[disabled] {
+                                opacity: 0.5;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

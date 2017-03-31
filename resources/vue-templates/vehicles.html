@@ -1,0 +1,293 @@
+<div id="vehicles" class="primary-container">
+    <div class="header-primary">
+        <div class="title">Your Vehicles</div>
+        <div class="select-custom">
+            <select>
+                <option>Loading vehicles...</option>
+                <option>Filter</option>
+                <option></option>
+            </select>
+            <span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        </div>
+        <button @click="">Add Vehicle</button>
+    </div>
+    <div class="card-container">
+        <div class="row">
+            <div @click="$router.push('vehicles/view')" class="card-jumbo">
+                <div class="overlay">
+                    <div class="tags-container">
+                        <div class="category-tags">
+                            <span>2002</span>
+                            <span>Audi</span>
+                            <span>A4</span>
+                            <span>1.8T quattro AWD 4dr</span>
+                        </div>
+                        <div class="type-tag">
+                            <span>Audi</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <div class="title">
+                            <span>2002 Audi A4 1.8T quattro 4dr</span>
+                            <div class="underline"></div>
+                            <div class="friends">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="header-primary filter-header">
+        <div class="title">Vehicles</div>
+        <div class="select-custom">
+            <select>
+                <option>Loading filters...</option>
+                <option>Most Popular</option>
+                <option>Trending</option>
+                <option>Most Power</option>
+                <option></option>
+            </select>
+            <span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        </div>
+        <div class="select-container-vehicle">
+            <span>Filter by Vehicle</span>
+            <div class="select-custom">
+                <select v-model="vehicle.year" @change="loadMakes">
+                    <option disabled :value="null">Select year</option>
+                    <option v-for="year in years">{{ year }}</option>
+                </select>
+                <span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="select-custom">
+                <select v-model="vehicle.make" v-disabled="!makes" @change="loadModels">
+                    <option v-if="makes == null" :value="null">Loading makes...</option>
+                    <option v-else disabled :value="null">Select make</option>
+                    <option v-if="makes" v-for="make in makes" :value="make">{{ make.name }}</option>
+                </select>
+                <span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="select-custom">
+                <select v-model="vehicle.model" v-disabled="!models" @change="loadStyles">
+                    <option :value="null">Select model</option>
+                    <option v-if="models" v-for="model in models" :value="model">{{ model.name }}</option>
+                </select>
+                <span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+            </div>
+            <div class="select-custom">
+                <select v-model="vehicle.style" v-disabled="!styles">
+                    <option v-if="styles == null" :value="null">Loading styles...</option>
+                    <option v-else :value="null">Select style</option>
+                    <option v-if="styles" v-for="style in styles" :value="style">{{ style.name }}</option>
+                </select>
+                <span class="caret"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+            </div>
+            <button @click.prevent="filterByVehicle" v-disabled="vehicle.style == null" disabled="disabled">Filter</button>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="row">
+            <div class="card-medium">
+                <div class="overlay">
+                    <div class="tags-container">
+                        <div class="category-tags">
+                            <span>Engine</span>
+                            <span>Turbocharger</span>
+                            <span>...</span>
+                        </div>
+                        <div class="type-tag">
+                            <span>BMW</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="info-container">
+
+                        <div class="title">
+                            <span>The Best Way to Modify Your Car</span>
+                            <div class="underline"></div>
+                            <div class="friends">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-medium">
+                <div class="overlay">
+                    <div class="tags-container">
+                        <div class="category-tags">
+                            <span>Engine</span>
+                            <span>Turbocharger</span>
+                            <span>...</span>
+                        </div>
+                        <div class="type-tag">
+                            <span>Lexus</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="info-container">
+
+                        <div class="title">
+                            <span>The Best Way to Modify Your Car</span>
+                            <div class="underline"></div>
+                            <div class="friends">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card-medium">
+                <div class="overlay">
+                    <div class="tags-container">
+                        <div class="category-tags">
+                            <span>Engine</span>
+                            <span>Turbocharger</span>
+                            <span>...</span>
+                        </div>
+                        <div class="type-tag">
+                            <span>Ford</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="info-container">
+
+                        <div class="title">
+                            <span>The Best Way to Modify Your Car</span>
+                            <div class="underline"></div>
+                            <div class="friends">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-medium">
+                <div class="overlay">
+                    <div class="tags-container">
+                        <div class="category-tags">
+                            <span>Engine</span>
+                            <span>Turbocharger</span>
+                            <span>...</span>
+                        </div>
+                        <div class="type-tag">
+                            <span>Audi</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="info-container">
+
+                        <div class="title">
+                            <span>The Best Way to Modify Your Car</span>
+                            <div class="underline"></div>
+                            <div class="friends">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card-medium">
+                <div class="overlay">
+                    <div class="tags-container">
+                        <div class="category-tags">
+                            <span>Engine</span>
+                            <span>Turbocharger</span>
+                            <span>...</span>
+                        </div>
+                        <div class="type-tag">
+                            <span>Lamborghini</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="info-container">
+
+                        <div class="title">
+                            <span>The Best Way to Modify Your Car</span>
+                            <div class="underline"></div>
+                            <div class="friends">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-medium">
+                <div class="overlay">
+                    <div class="tags-container">
+                        <div class="category-tags">
+                            <span>Engine</span>
+                            <span>Turbocharger</span>
+                            <span>...</span>
+                        </div>
+                        <div class="type-tag">
+                            <span>Audi</span>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="info-container">
+
+                        <div class="title">
+                            <span>The Best Way to Modify Your Car</span>
+                            <div class="underline"></div>
+                            <div class="friends">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <span><i class="fa fa-thumbs-up" aria-hidden="true"></i>1,200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

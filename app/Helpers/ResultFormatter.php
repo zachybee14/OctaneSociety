@@ -1,18 +1,22 @@
 <?php namespace OctaneSociety\Helpers;
 
-use \Illuminate\Database\Eloquent\Collection;
-use \Closure;
+use Closure;
+use DateTime;
+use Exception;
+use Log;
+
+use Illuminate\Database\Eloquent\Collection;
 
 /*
 	ResultFormatter::format($sourceObject, [
 		'some_field_from_source_object',
 		'another_field_from_source_object',
-		
+
 		'a_subobject_on_source_object.field_on_subobject', // will output 'field_on_subobject'
-		
+
 		'field_with_a_shitty_name:the_name_to_output',
 		'some_subobject.subobject_with_with_shitty_name:the_name_to_output',
-		
+
 		'subcollection' => [
 			'some_field_from_an_item_in_subcollection',
 			'another_field_from_an_item_in_subcollection',
@@ -22,80 +26,110 @@ use \Closure;
 */
 
 class ResultFormatter {
-	public static function format($object, $format) {
-		if (is_null($object))
-			return null;
+    public static function format($object, $format) {
+        if (is_null($object))
+            return null;
 
-		if (is_array($object)) {
-			$result = [];
-			foreach ($object as $subobject)
-				$result[] = self::format($subobject, $format);
-			return $result;
-		}
-		
-		if ($object instanceof Collection) {
-			$result = [];
-			$object->each(function($subobject) use (&$result, $format) {
-				$result[] = self::format($subobject, $format);
-			});
-			return $result;
-		}
+        if (is_array($object)) {
+            if (!count($object)) {
+                return [];
+            }
+            elseif (array_key_exists(0, $object)) {
+                $result = [];
+                foreach ($object as $subobject)
+                    $result[] = self::format($subobject, $format);
+                return $result;
+            }
+        }
 
-		if ($format instanceof Closure) {
-			return $format($object);
-		}
+        if ($object instanceof Collection) {
+            $result = [];
+            $object->each(function($subobject) use (&$result, $format) {
+                $result[] = self::format($subobject, $format);
+            });
+            return $result;
+        }
 
-		$item = [];
-		foreach ($format as $key => $value) {
-			if (is_numeric($key)) {
-				$dataKey = $value;
-				$subformat = null;
-			}
-			else {
-				$dataKey = $key;
-				$subformat = $value;
-			}
+        if ($format instanceof Closure) {
+            return $format($object);
+        }
 
-			if (str_contains($dataKey, ':')) {
-				list($sourceKey, $targetKey) = explode(':', $dataKey);
-			}
-			else {
-				$sourceKey = $dataKey;
-				$targetKey = $dataKey;
-			}
+        $item = [];
+        foreach ($format as $key => $value) {
+            if (is_numeric($key)) {
+                $dataKey = $value;
+                $subformat = null;
+            }
+            else {
+                $dataKey = $key;
+                $subformat = $value;
+            }
 
-			if (str_contains($sourceKey, '.')) {
-				$sourceKey = explode('.', $sourceKey);
-				$source = $object;
-				while (count($sourceKey)) {
-					$piece = array_shift($sourceKey);
-					if (!isset($source->$piece)) {
-						$source = null;
-						break;
-					}
-					$source = $source->$piece;
-				}
-			}
-			else {
-				$source = $object->$sourceKey;
-			}
+            $skipIfFalse = substr($dataKey, -1) == '?';
 
-			if (str_contains($targetKey, '.'))
-				$targetKey = preg_replace('/^.*\./', '', $targetKey);
+            if ($skipIfFalse)
+                $dataKey = substr($dataKey, 0, -1);
 
-			if (is_object($source) && $source instanceof \Carbon\Carbon)
-				$item[$targetKey] = $source->toDateTimeString();
+            if (str_contains($dataKey, ':')) {
+                list($sourceKey, $targetKey) = explode(':', $dataKey);
+            }
+            else {
+                $sourceKey = $dataKey;
+                $targetKey = $dataKey;
+            }
 
-			elseif (is_null($subformat))
-				$item[$targetKey] = $source;
+            if (str_contains($sourceKey, '.')) {
+                $pieces = explode('.', $sourceKey);
+                $sourceKey = array_pop($pieces);
+                $source = $object;
+                while (count($pieces)) {
+                    $piece = array_shift($pieces);
+                    $source = $source->$piece;
+                    if (is_null($source)) break;
+                }
+            }
 
-			elseif (is_null($source))
-				$item[$targetKey] = null;
+            else {
+                $source = $object;
+            }
 
-			else
-				$item[$targetKey] = self::format($source, $subformat);
-		}
+            if (substr($sourceKey, 0, 1) == '@') {
+                $sourceKey = substr($sourceKey, 1);
+                $source = $source->getAttributes()[$sourceKey];
+                $targetKey = preg_replace('/^@/', '', $targetKey);
+            }
+            elseif (is_array($source)) {
+                $source = $source[$sourceKey];
+            }
+            elseif (!is_null($source)) {
+                $source = $source->$sourceKey;
+            }
 
-		return $item;
-	}
+            if ($skipIfFalse && $source == false)
+                continue;
+
+            if (str_contains($targetKey, '.'))
+                $targetKey = preg_replace('/^.*\./', '', $targetKey);
+
+            if (is_object($source) && $source instanceof DateTime)
+                $item[$targetKey] = $source->format('c');
+
+            elseif (is_null($subformat))
+                $item[$targetKey] = $source;
+
+            elseif (is_null($source))
+                $item[$targetKey] = null;
+
+            else {
+                try {
+                    $item[$targetKey] = self::format($source, $subformat);
+                } catch (Exception $e) {
+                    Log::debug('Exception was encountered while formatting target key: ' . $targetKey);
+                    throw $e;
+                }
+            }
+        }
+
+        return $item;
+    }
 }
